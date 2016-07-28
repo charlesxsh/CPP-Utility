@@ -1,0 +1,1 @@
+# C++ interesting utility
