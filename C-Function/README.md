@@ -3,6 +3,15 @@
 
 # Usage
 ```CPP
+#include <iostream> 
+#include "function.hpp" 
+ 
+int print(int t) 
+{ 
+     std::cout << t << std::endl; 
+     return t; 
+} 
+
 int main(int argc, const char* argv[]){
 
     xsh::Function<int(int)> print_obj_1; 
