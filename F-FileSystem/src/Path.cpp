@@ -1,12 +1,12 @@
 //
-//  FileSystem.cpp
+//  Path.cpp
 //  Cppdemo
 //
-//  Created by Shihao Xia on 8/1/16.
+//  Created by Shihao Xia on 8/4/16.
 //  Copyright © 2016 Shihao Xia. All rights reserved.
 //
 
-#include "FileSystem.hpp"
+#include "Path.hpp"
 
 namespace xsh
 {
@@ -91,6 +91,16 @@ namespace xsh
             return temp.str();
         }
         
+        Path::Path(const Path& path)
+        {
+            path_type_ = path.path_type_;
+            paths_ = path.paths_;
+        }
+        
+        Path::Path(const char *init)
+        {
+            
+        }
         
         Path& Path::join(const std::string& child)
         {
@@ -98,54 +108,11 @@ namespace xsh
             return *this;
         }
         
-
-        
-        //strintify functions
-        std::ostream& operator<<(std::ostream& stream, const PathType type)
-        {
-            switch (type) {
-                case PathType::Absolute :
-                    stream << "Absolute";
-                    break;
-                case PathType::Relative:
-                    stream << "Relative";
-                    break;
-                default:
-                    break;
-            }
-            return stream;
-        }
-        
         std::ostream& operator<<(std::ostream& stream, const Path& obj)
         {
             return stream << obj.str();
         }
         
-        
-        //Directroy Implementation
-        std::string GetCurrentDirectory()
-        {
-            char buffer[PATH_MAX];
-            char *answer = getcwd(buffer, sizeof(buffer));
-            std::string s_cwd;
-            if (answer)
-            {
-                s_cwd = answer;
-            }
-            return std::move(s_cwd);
-        }
-        
-        bool CreateDirectory(const std::string& path)
-        {
-            int status = 0;
-            
-            status = mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-            
-            if(status != 0){
-                return false;
-            }
-            return true;
-        }
 
     }
 }
