@@ -13,7 +13,7 @@ namespace xsh
 {
     namespace FileSystem
     {
-        Folder::Folder(const char *name):FileElement(name, FileType::Folder)
+        Folder::Folder(const std::string& name):FileElement(name, FileType::Folder)
         {
             
         }

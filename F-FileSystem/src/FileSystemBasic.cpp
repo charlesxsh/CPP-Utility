@@ -54,6 +54,32 @@ namespace xsh
             }
             return true;
         }
+        
+        bool ChangeWorkingDirectory(const std::string& path)
+        {
+            int ret = 0;
+            ret = ::chdir(path.c_str());
+            return ret == 0;
+        }
+        
+        void ReadDirectory(const std::string& path)
+        {
+            DIR *dir = nullptr;
+            dirent *childitems = nullptr;
+            //std::vector<PFileElement> childs;
+            dir = ::opendir(path.c_str());
+            if (dir == nullptr) {
+                //return std::move(childs);
+                return;
+            }
+            
+            while ((childitems = ::readdir(dir) ) != nullptr) {
+                std::cout << childitems->d_name << std::endl;
+            }
+            
+            //return std::move(childs);
+        }
+
 
     }
 }

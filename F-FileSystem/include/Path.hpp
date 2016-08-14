@@ -18,9 +18,9 @@ namespace xsh {
         class Path
         {
         public:
-            Path(const std::string& init);
-            Path(const Path&);
+            Path(const std::string&& init);
             Path(const char *init);
+            Path(const Path&);
             Path(PathType path_type);
             Path& join(const std::string& child);
             std::string str() const;
@@ -28,6 +28,7 @@ namespace xsh {
         private:
             PathType path_type_;
             std::vector<std::string> paths_;
+            void parsePathString(const std::string& init);
         };
         
         std::ostream& operator<<(std::ostream& stream, const Path& type);

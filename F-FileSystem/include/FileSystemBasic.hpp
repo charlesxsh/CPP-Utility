@@ -23,7 +23,10 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <dirent.h>
 #endif
+
+#include <vector>
 
 namespace xsh
 {
@@ -54,6 +57,9 @@ namespace xsh
         //directory
         std::string GetCurrentDirectory();
         bool CreateDirectory(const std::string& path);
+        bool ChangeWorkingDirectory(const std::string& path);
+    
+        void ReadDirectory(const std::string& path);
         
         std::ostream& operator<<(std::ostream& stream, const PathType& type);
 

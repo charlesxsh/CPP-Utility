@@ -31,7 +31,7 @@ namespace xsh
             void add(const PFileElement e);
             inline FileType getType() override;
         private:
-            Folder(const char *name);
+            Folder(const std::string& name);
             std::vector<PFileElement> childs_;
         };
     }

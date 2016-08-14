@@ -13,7 +13,17 @@ namespace xsh
     namespace FileSystem
     {
         //Path Implementation
-        Path::Path(const std::string& init)
+        Path::Path(const std::string&& init)
+        {
+            parsePathString(init);
+        }
+        
+        Path::Path(const char *init)
+        {
+            parsePathString(init);
+        }
+        
+        void Path::parsePathString(const std::string& init)
         {
             if(!init.empty())
             {
@@ -64,8 +74,9 @@ namespace xsh
                     }
                 }
             }
+
         }
-        
+
         Path::Path(PathType path_type):path_type_(path_type){}
         
         std::string Path::str() const
@@ -97,10 +108,7 @@ namespace xsh
             paths_ = path.paths_;
         }
         
-        Path::Path(const char *init)
-        {
-            
-        }
+      
         
         Path& Path::join(const std::string& child)
         {

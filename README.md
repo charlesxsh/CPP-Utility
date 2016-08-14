@@ -6,4 +6,7 @@ xsh::Function
 ##Framework
 xsh::FileSystem
 
+##Tools
+xsh::CPPModuleManager
+
 

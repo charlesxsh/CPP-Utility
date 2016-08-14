@@ -26,6 +26,8 @@ namespace xsh
             File& operator=(const File&) = delete;
             File& operator=(File&& ) = delete;
             
+            template<class T>
+            friend PFile& operator << (PFile& file, T&& stuff);
         public:
             template<class... Args>
             static PFile Create(Args&&... args)
@@ -35,17 +37,17 @@ namespace xsh
             void CreateInPath(xsh::FileSystem::Path path) override;
             inline FileType getType() override;
             
-            template<class T>
-            File& operator << (T&& t)
-            {
-                buffer_ << t;
-                return *this;
-            }
-        private:
+            private:
             File(const char *name);
             std::stringstream  buffer_;
         };
         
+        template<class T>
+        PFile& operator << (PFile& file, T&& stuff)
+        {
+            file->buffer_ << stuff;
+            return file;
+        }
 
     }
 }
