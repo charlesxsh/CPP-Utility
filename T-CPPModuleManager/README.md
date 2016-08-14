@@ -22,6 +22,7 @@ int main(int argc, const char* argv[])
 ```
 Under /Users/Shihao/Desktop there will be:
 
+```
 testModule/
 |-src/
    |-main.cpp
@@ -29,5 +30,6 @@ testModule/
 |-lib/
 |-build/
    |-Makefile
+```
 
 Program will automatically generate a Makefile using CMake.
